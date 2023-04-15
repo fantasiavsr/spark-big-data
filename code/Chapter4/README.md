@@ -71,7 +71,7 @@ df_people.createOrReplaceTempView("people")
 spark.sql("select * from people").show()
 ```
 Screenshot: 
-https://github.com/fantasiavsr/spark-big-data/blob/master/code/Chapter4/00_images/1.png
+![image](https://github.com/fantasiavsr/spark-big-data/blob/master/code/Chapter4/00_images/1.png)
 
 Penjelasan code
 ```sh
