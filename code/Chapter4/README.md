@@ -7,16 +7,6 @@
   </p>
 </div>
 
-## Memulai Spark
-![image](https://user-images.githubusercontent.com/86558365/228115462-3cb62086-c4e5-4cb0-ba3b-e434b9aef702.png)
-di sini saya menggunakan Spark versi 3.3.2 yang dijalankan di dalam container dalam docker
-
-## Spark-shell
-```sh
-pyspark
-```
-Screenshot:
-
 ## Analitik dengan DataFrames
 ### Code 1
 ```sh
@@ -71,6 +61,7 @@ df_people.createOrReplaceTempView("people")
 spark.sql("select * from people").show()
 ```
 Screenshot: 
+![image](https://github.com/fantasiavsr/spark-big-data/blob/master/code/Chapter4/00_images/1.png)
 
 Penjelasan code
 ```sh
@@ -110,7 +101,6 @@ df1.show()
 df2 = spark.read.format('jdbc').options(url='jdbc:mysql://ebt-polinema.id:3306/polinema_pln', dbtable='t_wind_turbine', user='ebt', password='EBT@2022@pltb').load()
 df2.show()
 ```
-Screenshot:
 
 Penjelasan code
 ```sh
@@ -148,6 +138,7 @@ df2rdd.take(2)
 print(df2rdd.collect())
 ```
 Screenshot:
+![image](https://github.com/fantasiavsr/spark-big-data/blob/master/code/Chapter4/00_images/3.png)
 
 Penjelasan code
 ```sh
@@ -192,6 +183,7 @@ deptDS.filter(x => x.dept_location > 1).show()
 //       deptDS.filter(x => x.dept_location > 1).show()
 ```
 Screenshot:
+![image](https://github.com/fantasiavsr/spark-big-data/blob/master/code/Chapter4/00_images/4.png)
 
 Penjelasan code
 ```sh
@@ -229,7 +221,6 @@ newDeptDS.toDF.first()
 
 ```
 
-Screenshot:
 
 Penjelasan code
 ```sh
@@ -255,6 +246,7 @@ spark.catalog.listFunctions().show()
 ```
 
 Screenshot:
+![image](https://github.com/fantasiavsr/spark-big-data/blob/master/code/Chapter4/00_images/6.png)
 
 Penjelasan code
 ```sh
@@ -286,6 +278,7 @@ df_txt
 ```
 
 Screenshot:
+![image](https://github.com/fantasiavsr/spark-big-data/blob/master/code/Chapter4/00_images/7.png)
 
 Penjelasan code
 ```sh
@@ -324,6 +317,7 @@ df_json.write.format("parquet").save("parquet_dir2")
 ```
 
 Screenshot:
+![image](https://github.com/fantasiavsr/spark-big-data/blob/master/code/Chapter4/00_images/8.png)
 
 Penjelasan code
 ```sh
@@ -364,6 +358,7 @@ csv_df.select('year', 'model').write.options(codec="org.apache.hadoop.io.compres
 ```
 
 Screenshot:
+![image](https://github.com/fantasiavsr/spark-big-data/blob/master/code/Chapter4/00_images/9.png)
 
 Penjelasan code
 ```sh
