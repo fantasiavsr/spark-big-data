@@ -63,11 +63,11 @@ predictions.take(10)
 predictions.write.format("com.databricks.spark.csv").save("ml-predictions.csv")
 ```
 
-Screenshot: 
+#### Screenshot:
 ![image](https://github.com/fantasiavsr/spark-big-data/assets/86558365/2ca72f51-1296-418f-91a9-90f6c0caee59)
 
 
-Penjelasan code:
+#### Penjelasan code:
 Mengimplementasikan sistem rekomendasi menggunakan teknik ALS (Alternating Least Squares) pada data peringkat film. Pertama, kelas "Rating" didefinisikan dengan atribut-atribut seperti ID pengguna, ID film, peringkat, dan timestamp. Fungsi "parseRating" digunakan untuk memisahkan baris data dengan pemisah "::" dan menghasilkan objek Rating. Kemudian, data mentah dibaca dari file "ratings.dat" dan diproses menggunakan metode "map" untuk mengonversi setiap baris menjadi objek Rating, kemudian diubah menjadi DataFrame. Data dibagi menjadi set pelatihan (80%) dan set pengujian (20%). Model rekomendasi dibangun menggunakan ALS pada data pelatihan dengan parameter seperti jumlah iterasi, regParam, kolom pengguna, kolom item, dan kolom peringkat. Model yang telah dilatih disimpan dalam file "mymodel". Prediksi dilakukan pada data pengujian menggunakan model yang dilatih, dan selisih kuadrat antara peringkat yang diprediksi dan peringkat sebenarnya dihitung. Kemudian, nilai MSE (Mean Squared Error) dan RMSE (Root Mean Squared Error) dihitung sebagai metrik evaluasi model. Hasil prediksi ditulis dalam format CSV.
 
 
@@ -103,11 +103,11 @@ predictions.show()
 import math
 result = predictions.rdd.map(lambda row: row['prediction'] - row['rating']).map(lambda x: x*x).filter(lambda x: not math.isnan(x))
 ```
-Screenshot: 
+#### Screenshot: 
 ![image](https://github.com/fantasiavsr/spark-big-data/assets/86558365/9a68f25f-62f6-4b31-b704-f944a37e7eec)
 
 
-Penjelasan code:
+#### Penjelasan code:
 Apache Spark untuk membangun sistem rekomendasi dengan menggunakan ALS (Alternating Least Squares). Pertama, sesi Spark diinisialisasi dengan nama "GoogleColabSpark". Data dari file "ratings.dat" dibaca sebagai RDD (Resilient Distributed Dataset) dan dipisahkan menggunakan delimiter "::". Selanjutnya, RDD diubah menjadi DataFrame dengan atribut-atribut seperti userId, movieId, rating, dan timestamp. Data tersebut kemudian dibagi menjadi set pelatihan dan set pengujian. Model rekomendasi ALS dengan parameter seperti jumlah iterasi, regParam, dan kolom-kolom yang sesuai, diinisialisasi. Model tersebut dilatih dengan menggunakan data pelatihan. Prediksi dilakukan pada data pengujian dengan menggunakan model yang dilatih, dan hasil prediksi ditampilkan. Selanjutnya, dilakukan evaluasi model dengan menghitung RMSE (Root Mean Squared Error) pada data pengujian. RMSE dihitung dengan mengurangi peringkat yang diprediksi dengan peringkat sebenarnya, kemudian mengkuadratkannya dan menghilangkan nilai-nilai NaN. Hasil evaluasi tersebut dapat digunakan untuk mengukur performa model rekomendasi.
 
 
@@ -127,9 +127,9 @@ print("Mean:", summary.mean())
 print("Variance:", summary.variance())
 print("Number of Nonzeros:", summary.numNonzeros())
 ```
-Screenshot: 
+#### Screenshot: 
 ![image](https://github.com/fantasiavsr/spark-big-data/assets/86558365/a2bdd651-6aa7-4a6c-a0dc-ea9f128981fe)
 
 
-Penjelasan code:
+#### Penjelasan code:
 Apache Spark untuk melakukan analisis statistik pada data matriks. Pertama, sesi Spark diinisialisasi dengan menggunakan SparkSession. Selanjutnya, objek SparkContext (sc) diinisialisasi dari sesi Spark. Data matriks (mat) dibentuk sebagai RDD dengan menggunakan metode "parallelize" dengan elemen-elemen sebagai array 2 dimensi. Kemudian, metode "colStats" dari modul "Statistics" digunakan untuk menghitung statistik kolom pada matriks tersebut. Objek summary akan berisi ringkasan statistik seperti mean (rata-rata), variance (variansi), dan numNonzeros (jumlah elemen non-nol) dari setiap kolom matriks. Hasil statistik tersebut kemudian ditampilkan menggunakan pernyataan "print".
